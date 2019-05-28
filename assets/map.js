@@ -8,8 +8,15 @@ function initMap() {
     // https://api.nasa.gov/mars-wmts/catalog/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/default/default028mm/{z}/{y}/{x}.jpg
 
     // OpenPlanetary tiles - nice!
-    let mars = L.tileLayer('https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-1/0,1,2,3,4/{z}/{x}/{y}.png', {
+    // Vector
+    let vector = L.tileLayer('https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-1/0,1,2,3,4/{z}/{x}/{y}.png', {
         attribution: '<a href="https://github.com/openplanetary/" target="_blank">OpenPlanetaryMap</a>'
+    });
+
+    // Shaded surface layer
+    let surface = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
+        attribution: '<a href="https://github.com/openplanetary/" target="_blank">OpenPlanetaryMap</a>, Celestia/praesepe',
+        tms: true
     });
 
     map = L.map('map', {
@@ -17,16 +24,19 @@ function initMap() {
             [-90, -180],
             [90, 180]
         ]
-    }).setView([0, 0], 1);
+    }).setView([0, 0], 3);
 
     //map.fitBounds(bounds);
 
     L.control.scale({'position': 'bottomleft', 'metric': true, 'imperial': false}).addTo(map);
 
-    map.addLayer(mars);
+    map.addLayer(surface);
 
-    //var baseLayers = {"Mars Vector": mars};
-    //L.control.layers(baseLayers, {}).addTo(map);
+    var baseLayers = {
+        "Vector": vector,
+        "Shaded Surface": surface
+    };
+    L.control.layers(baseLayers, {}).addTo(map);
 }
 
 /*
