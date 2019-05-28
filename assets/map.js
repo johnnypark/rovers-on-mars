@@ -15,7 +15,25 @@ function initMap() {
 
     // Shaded surface layer
     let surface = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
-        attribution: '<a href="https://github.com/openplanetary/" target="_blank">OpenPlanetaryMap</a>, Celestia/praesepe',
+        attribution: 'Celestia/praesepe',
+        tms: true
+    });
+
+    // hillshade layer
+    let hillshade = L.tileLayer('https://s3.us-east-2.amazonaws.com/opmmarstiles/hillshade-tiles/{z}/{x}/{y}.png', {
+        attribution: 'NASA/MOLA',
+        tms: true
+    });
+
+    // shaded greyscale layer
+    let greyscale = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-gray/{z}/{x}/{y}.png', {
+        attribution: 'NASA/MOLA',
+        tms: true
+    });
+
+    // shaded color layer
+    let color = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png', {
+        attribution: 'NASA/MOLA',
         tms: true
     });
 
@@ -30,11 +48,14 @@ function initMap() {
 
     L.control.scale({'position': 'bottomleft', 'metric': true, 'imperial': false}).addTo(map);
 
-    map.addLayer(surface);
+    map.addLayer(vector);
 
     var baseLayers = {
         "Vector": vector,
-        "Shaded Surface": surface
+        "Shaded Surface": surface,
+        "Shaded Greyscale": greyscale,
+        "Hillshade": hillshade,
+        "Color": color
     };
     L.control.layers(baseLayers, {}).addTo(map);
 }
