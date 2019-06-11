@@ -11,6 +11,13 @@ html, body {
     background-color: black;
 }
 
+#map .circle {
+    background: crimson;
+    border: 1px solid white;
+    border-radius: 50%;
+    opacity: .6;
+}
+
 header, aside, footer {
     margin: 0;
     padding: 0.3rem;
@@ -25,15 +32,12 @@ header {
     background: #03a9f4;
 }
 
-aside {
-    background: #673ab7;
-}
-
 footer {
     background: #616161;
 }
 
-body {
+.content-wrapper {
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -41,14 +45,28 @@ body {
 .flex-container {
     flex-grow: 1;
     display: flex;
+    min-height: 0;
 }
 
 .content {
     flex: 1;
 }
 
+aside {
+    flex: 0 1 316px;
+    overflow: scroll;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+}
+
 .sidebar {
-    flex: 0 1 300px;
+    width: 300px;
+}
+
+.sidebar img.rover {
+    width: 100%;
+    max-width: 90px;
+    padding: 5px;
 }
 
 @media screen and (max-width: 640px){
