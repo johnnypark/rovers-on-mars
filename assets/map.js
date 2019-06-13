@@ -1,4 +1,4 @@
-let map;
+let map, lightbox;
 
 function initMap() {
     // works but width = 2*height
@@ -130,7 +130,7 @@ function doclick(e)
             let j;
             for(j = 0; j < Math.min(24, data.images[p.rover][i]['photos'].length); j++)
             {
-                html += '<img src="' + data.images[p.rover][i]['photos'][j].img_src + '" class="rover"/>';
+                html += '<a href="' + data.images[p.rover][i]['photos'][j].img_src + '"><img src="' + data.images[p.rover][i]['photos'][j].img_src + '" class="rover"/></a>';
             }
 
             if(j < data.images[p.rover][i]['photos'].length)
@@ -138,8 +138,9 @@ function doclick(e)
                 html += (data.images[p.rover][i]['photos'].length - j) + " images more";
             }
         }
-        $(".sidebar").html(html)
-    })
+        $(".sidebar").html(html);
+        lightbox = $('.sidebar a').simpleLightbox({});
+    });
 }
 
 function getImage(rover, sol)
