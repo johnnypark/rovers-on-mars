@@ -7,8 +7,22 @@ html, body {
     font-family: 'Exo 2', sans-serif;
 }
 
-#MARS {
-    width: 30%;
+header {
+    position: absolute;
+    height: 100px;
+    color: #B50303;
+    z-index: 1000;
+}
+
+.title
+{
+    line-height: 20px;
+}
+
+
+#mars-logo
+{
+    height: 80px;
 }
 
 #map {
@@ -24,6 +38,10 @@ html, body {
     opacity: .3;
 }
 
+#map .leaflet-top.leaflet-left {
+    top: 110px;
+}
+
 header, aside, footer {
     margin: 0;
     padding: 0.3rem;
@@ -34,9 +52,7 @@ body {
     background: #000000;
 }
 
-header {
-    background: #272727;
-}
+
 
 footer {
     background: #272727;
