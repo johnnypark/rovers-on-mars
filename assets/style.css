@@ -19,7 +19,7 @@ html, body {
 
 #map .circle {
     background: #B50303;
-    border: 1px solid #3c3c3c;
+    border: 1px solid #323232;
     border-radius: 50%;
     opacity: .3;
 }
@@ -27,10 +27,6 @@ html, body {
 header, aside, footer {
     margin: 0;
     padding: 0.3rem;
-    color: #ffffff;
-}
-
-header {
     color: #B50303;
 }
 
@@ -43,7 +39,8 @@ header {
 }
 
 footer {
-    background: #616161;
+    background: #272727;
+    text-align: right;
 }
 
 .content-wrapper {
@@ -63,9 +60,9 @@ footer {
 }
 
 aside {
-    flex: 0 1 316px;
+    flex: 0 1 326px;
     overflow: scroll;
-    padding: 0 16px 0 0;
+    padding: 0 16px 5px 5px;
     box-sizing: border-box;
 }
 
