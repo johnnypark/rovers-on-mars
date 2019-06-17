@@ -62,7 +62,10 @@ function initMap() {
     addGeoJSON();
 }
 
-let icon = L.divIcon({ className: 'circle'});
+function makeIcon(rover)
+{
+    return L.divIcon({ className: 'circle ' + rover});
+}
 
 let data = {path: {}, points: {}, images: {}};
 function addGeoJSON()
@@ -95,7 +98,7 @@ function addGeoJSON()
                     },
                     pointToLayer: function (feature, latlng) {
                         let tooltip = feature.properties.date_2 === null ? "Sol " + feature.properties.date_1 : "Sols " + feature.properties.date_1 + ' to ' + feature.properties.date_2;
-                        return L.marker(latlng, {icon: icon}).bindTooltip(tooltip);
+                        return L.marker(latlng, {icon: makeIcon(rover)}).bindTooltip(tooltip);
                     }
                 }).addTo(map);
             }
@@ -118,7 +121,7 @@ function doclick(e)
     let promises = [];
     for(let i = p.date_1; i <= p.date_2; i++)
     {
-        promises.push(getImage(p.rover, i));
+        promises.push(getImage(p.rover, i)); // "NAVCAM"
     }
 
     $.when.apply($, promises).done(function(){
@@ -143,7 +146,7 @@ function doclick(e)
     });
 }
 
-function getImage(rover, sol)
+function getImage(rover, sol, camera, page)
 {
     let api_key = "iitToTP7Vq0aSzwdZwfDCcR4tNR5aMgA23KRZn0x";
     let promise = $.Deferred();
@@ -151,7 +154,7 @@ function getImage(rover, sol)
     {
         $.ajax({
             type: "GET",
-            url: "https://api.nasa.gov/mars-photos/api/v1/rovers/" + rover + "/photos?api_key=" + api_key + "&sol=" + sol,
+            url: "https://api.nasa.gov/mars-photos/api/v1/rovers/" + rover + "/photos?api_key=" + api_key + "&sol=" + sol + (camera ? "&camera=" + camera : '') + (page ? "&page=" + page : ''),
             dataType: "json"
         }).done(function(response) {
             data.images[rover][sol] = response;
