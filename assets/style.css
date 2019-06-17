@@ -3,6 +3,12 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
+    /*font-family: 'Kanit', sans-serif;*/
+    font-family: 'Exo 2', sans-serif;
+}
+
+#MARS {
+    width: 30%;
 }
 
 #map {
@@ -12,8 +18,8 @@ html, body {
 }
 
 #map .circle {
-    background: crimson;
-    border: 1px solid white;
+    background: #B50303;
+    border: 1px solid #3c3c3c;
     border-radius: 50%;
     opacity: .3;
 }
@@ -24,12 +30,16 @@ header, aside, footer {
     color: #ffffff;
 }
 
+header {
+    color: #B50303;
+}
+
 body {
     background: #000000;
 }
 
 header {
-    background: #03a9f4;
+    background: #272727;
 }
 
 footer {
