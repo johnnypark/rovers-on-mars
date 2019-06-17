@@ -17,12 +17,14 @@ header {
 .title
 {
     line-height: 20px;
+    padding: 5px;
 }
 
 
 #mars-logo
 {
     height: 80px;
+    padding: 5px;
 }
 
 #map {
