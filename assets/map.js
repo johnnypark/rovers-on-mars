@@ -17,6 +17,11 @@ let surface = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb
     attribution: 'Celestia/praesepe',
     tms: true
 });
+let minimap = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
+    attribution: 'Celestia/praesepe',
+    tms: true,
+    maxZoom: 5
+});
 
 // hillshade layer
 let hillshade = L.tileLayer('https://s3.us-east-2.amazonaws.com/opmmarstiles/hillshade-tiles/{z}/{x}/{y}.png', {
@@ -61,8 +66,8 @@ function initMap() {
 
     map = L.map('map', {
         maxBounds: [
-            [-90, -90],
-            [90, 270]
+            [-90, 30],
+            [90, 330]
         ],
         zoomControl: false
     }).setView([0, 0], 3);
@@ -89,6 +94,8 @@ function initMap() {
         "Gale Crater (Curiosity)": gale
     };
     let mapPicker = L.control.layers(baseLayers, overlays).addTo(map);
+
+    let miniMap = new L.Control.MiniMap(minimap, {position: "topleft", zoomAnimation: true, toggleDisplay: true, autoToggleDisplay: true}).addTo(map);
 
     map.activeBaseLayer = vector;
     map.on("baselayerchange", function(e) {
