@@ -1,48 +1,75 @@
 let map, lightbox;
 
+// works but width = 2*height
+// https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0//default/default028mm/{z}/{y}/{x}.jpg
+
+// works but slooooow
+// https://api.nasa.gov/mars-wmts/catalog/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/default/default028mm/{z}/{y}/{x}.jpg
+
+// OpenPlanetary tiles - nice!
+// Vector
+let vector = L.tileLayer('https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-1/0,1,2,3,4/{z}/{x}/{y}.png', {
+    attribution: '<a href="https://github.com/openplanetary/" target="_blank">OpenPlanetaryMap</a>'
+});
+
+// Shaded surface layer
+let surface = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
+    attribution: 'Celestia/praesepe',
+    tms: true
+});
+
+// hillshade layer
+let hillshade = L.tileLayer('https://s3.us-east-2.amazonaws.com/opmmarstiles/hillshade-tiles/{z}/{x}/{y}.png', {
+    attribution: 'NASA/MOLA',
+    tms: true
+});
+
+// shaded greyscale layer
+let greyscale = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-gray/{z}/{x}/{y}.png', {
+    attribution: 'NASA/MOLA',
+    tms: true
+});
+
+// shaded color layer
+let color = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png', {
+    attribution: 'NASA/MOLA',
+    tms: true
+});
+
+// image overlays
+let gusev = L.imageOverlay( "img/gusev-crater.jpg",[[-16.81938, 173.14051], [-12.86162, 178.11655]], {opacity: 0.8});
+let gale = L.imageOverlay( "img/gale-crater.jpg",[[-6.99038,136.10456], [-3.78708, 139.47267]], {opacity: 0.8});
+
+// A control to show a message
+L.Control.Message = L.Control.extend({
+    onAdd: function(map) {
+        let div = L.DomUtil.create('div', 'message-control');
+        div.innerHTML = 'No imagery available for this layer and zoom.<br>Please use a different layer or activate the imagery.';
+        return div;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.message = function(opts) {
+    return new L.Control.Message(opts);
+};
+
 function initMap() {
-    // works but width = 2*height
-    // https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0//default/default028mm/{z}/{y}/{x}.jpg
-
-    // works but slooooow
-    // https://api.nasa.gov/mars-wmts/catalog/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/default/default028mm/{z}/{y}/{x}.jpg
-
-    // OpenPlanetary tiles - nice!
-    // Vector
-    let vector = L.tileLayer('https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-1/0,1,2,3,4/{z}/{x}/{y}.png', {
-        attribution: '<a href="https://github.com/openplanetary/" target="_blank">OpenPlanetaryMap</a>'
-    });
-
-    // Shaded surface layer
-    let surface = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
-        attribution: 'Celestia/praesepe',
-        tms: true
-    });
-
-    // hillshade layer
-    let hillshade = L.tileLayer('https://s3.us-east-2.amazonaws.com/opmmarstiles/hillshade-tiles/{z}/{x}/{y}.png', {
-        attribution: 'NASA/MOLA',
-        tms: true
-    });
-
-    // shaded greyscale layer
-    let greyscale = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-gray/{z}/{x}/{y}.png', {
-        attribution: 'NASA/MOLA',
-        tms: true
-    });
-
-    // shaded color layer
-    let color = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png', {
-        attribution: 'NASA/MOLA',
-        tms: true
-    });
 
     map = L.map('map', {
         maxBounds: [
             [-90, -90],
             [90, 270]
-        ]
+        ],
+        zoomControl: false
     }).setView([0, 0], 3);
+
+    L.control.zoom({
+        position:'bottomright'
+    }).addTo(map);
 
     //map.fitBounds(bounds);
 
@@ -57,9 +84,42 @@ function initMap() {
         "Hillshade": hillshade,
         "Color": color
     };
-    L.control.layers(baseLayers, {}).addTo(map);
+    var overlays = {
+        "Gusev Crater (Spirit)": gusev,
+        "Gale Crater (Curiosity)": gale
+    };
+    let mapPicker = L.control.layers(baseLayers, overlays).addTo(map);
+
+    map.activeBaseLayer = vector;
+    map.on("baselayerchange", function(e) {
+        map.activeBaseLayer = e.layer;
+        checkZoom();
+    });
+
+    map.on("zoomend", checkZoom);
+
+    let messageControl = L.control.message({ position: 'bottomleft' }).addTo(map);
 
     addGeoJSON();
+}
+
+function checkZoom()
+{
+    let msgc = $(".message-control");
+    msgc.hide();
+
+    let message = false;
+    if(map.activeBaseLayer === surface && map.getZoom() > 5)
+        message = true;
+    else if(map.activeBaseLayer === greyscale && map.getZoom() > 9)
+        message = true;
+    else if(map.activeBaseLayer === hillshade && map.getZoom() > 6)
+        message = true;
+    else if(map.activeBaseLayer === color && map.getZoom() > 6)
+        message = true;
+
+    if(message)
+        msgc.show();
 }
 
 function makeIcon(rover)

@@ -48,6 +48,11 @@ header {
     top: 130px;
 }
 
+#map .message-control {
+    display: none;
+    color: white;
+}
+
 header, aside, footer {
     margin: 0;
     padding: 0.3rem;
@@ -57,8 +62,6 @@ header, aside, footer {
 body {
     background: #000000;
 }
-
-
 
 footer {
     background: #272727;
