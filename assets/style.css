@@ -13,6 +13,9 @@ header {
     color: #B50303;
     z-index: 1000;
     padding: 5px;
+
+    -webkit-filter: drop-shadow( 3px 3px 3px rgba(200, 200, 200, .7));
+    filter: drop-shadow( 3px 3px 3px rgba(200, 200, 200, .7));
 }
 
 .title
@@ -38,7 +41,7 @@ header {
     background: #B50303;
     border: 1px solid #323232;
     border-radius: 50%;
-    opacity: .3;
+    opacity: .4;
 }
 
 #map .leaflet-top.leaflet-left {
