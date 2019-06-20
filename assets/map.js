@@ -152,7 +152,7 @@ function addGeoJSON()
 
                 L.edgeMarker({
                     rover: rover,
-                    findEdge : function(map){ return L.bounds([200,30], [map.getSize().x - 50, map.getSize().y - 20])},
+                    findEdge : function(map){ return L.bounds([200,120], [map.getSize().x - 50, map.getSize().y - 20])},
                     icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [80, 80]}),
                     distanceOpacity: false,
                     rotateIcons: false,

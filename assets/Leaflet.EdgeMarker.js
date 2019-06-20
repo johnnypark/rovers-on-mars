@@ -70,7 +70,7 @@
 
         onClick: function(e) {
             if(e.target.options.rover)
-                this._map.fitBounds(data.path[e.target.options.rover].getBounds(), {padding: [10, 10]});
+                this._map.flyToBounds(data.path[e.target.options.rover].getBounds(), {padding: [10, 10]});
             else
                 this._map.setView(e.target.options.latlng, this._map.getZoom());
         },
