@@ -13,11 +13,11 @@ let vector = L.tileLayer('https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder
 });
 
 // Shaded surface layer
-let surface = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
+let surface = L.tileLayer('https://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
     attribution: 'Celestia/praesepe',
     tms: true
 });
-let minimap = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
+let minimap = L.tileLayer('https://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
     attribution: 'Celestia/praesepe',
     tms: true,
     maxZoom: 5
@@ -30,13 +30,13 @@ let hillshade = L.tileLayer('https://s3.us-east-2.amazonaws.com/opmmarstiles/hil
 });
 
 // shaded greyscale layer
-let greyscale = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-gray/{z}/{x}/{y}.png', {
+let greyscale = L.tileLayer('https://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-gray/{z}/{x}/{y}.png', {
     attribution: 'NASA/MOLA',
     tms: true
 });
 
 // shaded color layer
-let color = L.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png', {
+let color = L.tileLayer('https://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png', {
     attribution: 'NASA/MOLA',
     tms: true
 });
@@ -82,16 +82,16 @@ function initMap() {
 
     map.addLayer(vector);
 
-    var baseLayers = {
+    let baseLayers = {
         "Vector": vector,
         "Shaded Surface": surface,
         "Shaded Greyscale": greyscale,
         "Hillshade": hillshade,
         "Color": color
     };
-    var overlays = {
-        "Gusev Crater (Spirit)": gusev,
-        "Gale Crater (Curiosity)": gale
+    let overlays = {
+        "Gale Crater (Curiosity)": gale,
+        "Gusev Crater (Spirit)": gusev
     };
     let mapPicker = L.control.layers(baseLayers, overlays).addTo(map);
 
