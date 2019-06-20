@@ -134,7 +134,7 @@ function makeIcon(rover)
     return L.divIcon({ className: 'circle ' + rover});
 }
 
-let data = {path: {}, points: {}, images: {}};
+let data = {path: {}, points: {}, images: {}, manifest: {}};
 function addGeoJSON()
 {
     let paths = L.featureGroup().addTo(map);
@@ -170,7 +170,7 @@ function addGeoJSON()
                     onEachFeature: function(feature, layer) {
                         feature.properties.rover = rover;
                         layer.on({
-                            click: doclick
+                            click: clickMarker
                         });
                     },
                     pointToLayer: function (feature, latlng) {
@@ -183,52 +183,92 @@ function addGeoJSON()
         promises.push(load_path, load_points);
     }
 
+    let load_manifest = $.ajax({
+        type: "GET",
+        url: "geodata/manifest.json",
+        dataType: "json",
+        success: function(response) {
+            data.manifest = response;
+        }
+    });
+
+    promises.push(load_manifest);
+
     $.when.apply($, promises).done(function() {
         map.fitBounds(paths.getBounds(), {padding: [50, 50]});
     });
 }
 
-function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-}
-
-function doclick(e)
+function clickMarker(e)
 {
     let p = e.target.feature.properties;
 
     if(p.date_2 === null)
         p.date_2 = p.date_1;
 
-    if(!data.images[p.rover])
-        data.images[p.rover] = {};
-
-    $(".sidebar").html("loading");
-
-    let promises = [];
+    let container = $(".overlay." + p.rover + " .sol-chooser");
+    container.html("");
     for(let i = p.date_1; i <= p.date_2; i++)
     {
-        promises.push(getImage(p.rover, i)); // "NAVCAM"
+        container.append("<div class='s" + i + " " + (i === p.date_1 ? "selected" : "") + "' onclick=\"clickSol('" + p.rover + "', " + i + ")\">Sol " + i + "</div>");
     }
 
-    $.when.apply($, promises).done(function(){
-        let html = '';
-        for(let i = p.date_1; i <= p.date_2; i++)
-        {
-            html += '<h2>Sol ' + i + '</h2>';
-            html += '<h5>' + data.images[p.rover][i]['photos'].length + ' images</h5>';
-            let j;
-            for(j = 0; j < Math.min(24, data.images[p.rover][i]['photos'].length); j++)
-            {
-                html += '<a href="' + data.images[p.rover][i]['photos'][j].img_src + '"><img src="' + data.images[p.rover][i]['photos'][j].img_src + '" class="rover"/></a>';
-            }
+    $(".overlay." + p.rover).show();
 
-            if(j < data.images[p.rover][i]['photos'].length)
-            {
-                html += (data.images[p.rover][i]['photos'].length - j) + " images more";
-            }
+    clickSol(p.rover, p.date_1);
+}
+
+function clickSol(rover, sol)
+{
+    let chooser = $(".overlay." + rover + " .sol-chooser");
+    chooser.find("div").removeClass("selected");
+    chooser.find(".s" + sol).addClass("selected");
+
+    let photos = data.manifest[rover].photo_manifest.photos;
+    let cameras = [];
+    if(photos[sol] && photos[sol].cameras) cameras = photos[sol].cameras;
+
+    let overlay = $(".overlay." + rover);
+    let divs = overlay.find(".rover-cameras div");
+    divs.addClass("disabled");
+
+    for(let i = 0; i <= cameras.length; i++)
+    {
+        divs.filter("." + cameras[i]).removeClass("disabled");
+    }
+
+    overlay.attr("data-sol", sol);
+
+    clickCamera(rover, "NAVCAM");
+}
+
+function clickCamera(rover, camera)
+{
+    let overlay = $(".overlay." + rover);
+    let sol = overlay.attr("data-sol");
+
+    if(!data.images[rover])
+        data.images[rover] = {};
+
+    if(!data.images[rover][camera])
+        data.images[rover][camera] = {};
+
+    let container = overlay.find(".image-sidebar");
+    container.html("loading");
+
+    let promise = getImage(rover, sol, camera);
+
+    promise.done(function(){
+        let html = '';
+        html += '<h2>Sol ' + sol + '</h2>';
+        html += '<h5>' + data.images[rover][camera][sol]['photos'].length + ' images</h5>';
+        let j;
+        for(j = 0; j < data.images[rover][camera][sol]['photos'].length; j++)
+        {
+            html += '<a href="' + data.images[rover][camera][sol]['photos'][j].img_src + '"><img src="' + data.images[rover][camera][sol]['photos'][j].img_src + '" class="rover"/></a>';
         }
-        $(".sidebar").html(html);
-        lightbox = $('.sidebar a').simpleLightbox({});
+        container.html(html);
+        lightbox = container.find('a').simpleLightbox({});
     });
 }
 
@@ -236,14 +276,14 @@ let api_key = "iitToTP7Vq0aSzwdZwfDCcR4tNR5aMgA23KRZn0x";
 function getImage(rover, sol, camera, page)
 {
     let promise = $.Deferred();
-    if(!data.images[rover][sol])
+    if(!data.images[rover][camera][sol])
     {
         $.ajax({
             type: "GET",
             url: "https://api.nasa.gov/mars-photos/api/v1/rovers/" + rover + "/photos?api_key=" + api_key + "&sol=" + sol + (camera ? "&camera=" + camera : '') + (page ? "&page=" + page : ''),
             dataType: "json"
         }).done(function(response) {
-            data.images[rover][sol] = response;
+            data.images[rover][camera][sol] = response;
             promise.resolve();
         });
     }

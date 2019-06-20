@@ -86,18 +86,39 @@
 
     <div class="content-wrapper">
 
-        <div class="flex-container">
+        <div class="overlay curiosity">
 
-            <!-- Content -->
-            <section class="content">
-                <div id="map"></div>
-            </section>
+            <div class="flex-wrapper">
 
-            <!-- Sidebar -->
-            <aside>
-                <div class="sidebar"></div>
-            </aside>
+                <div class="sol-chooser"></div>
+
+                <div class="rover-schema">
+                    <div class="rover-schema-wrapper">
+                        <div class="rover-schema-img">
+                            <img src="img/schema-curiosity.png">
+                        </div>
+                        <div class="rover-cameras">
+                            <div class="camera FHAZ" style="top: 49%; left: 66%;" onclick="clickCamera('curiosity', 'FHAZ')"><span class="tooltip">Front Hazard Camera</span></div>
+                            <div class="camera RHAZ" style="top: 21%; left: 29%;" onclick="clickCamera('curiosity', 'RHAZ')"><span class="tooltip">Rear Hazard Camera</span></div>
+                            <div class="camera MAST" style="top: 21%; left: 66%;" onclick="clickCamera('curiosity', 'MAST')"><span class="tooltip">Mast Cameras</span></div>
+                            <div class="camera CHEMCAM" style="top: 15%; left: 72%;" onclick="clickCamera('curiosity', 'CHEMCAM')"><span class="tooltip">Chemistry and Camera Complex</span></div>
+                            <div class="camera MAHLI" style="top: 65%; left: 81%;" onclick="clickCamera('curiosity', 'MAHLI')"><span class="tooltip">Mars Hand Lens Imager</span></div>
+                            <div class="camera MARDI" style="top: 43%; left: 76%;" onclick="clickCamera('curiosity', 'MARDI')"><span class="tooltip">Mars Descent Imager</span></div>
+                            <div class="camera NAVCAM" style="top: 21%; left: 72%;" onclick="clickCamera('curiosity', 'NAVCAM')"><span class="tooltip">Navigation Cameras</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-sidebar"></div>
+
+            </div>
+
         </div>
+
+        <!-- Content -->
+        <section class="content">
+            <div id="map"></div>
+        </section>
 
         <!-- Footer -->
         <footer>

@@ -18,114 +18,15 @@ header {
     filter: drop-shadow( 3px 3px 3px rgba(200, 200, 200, .7));
 }
 
-.title
-{
+.title {
     font-size: larger;
     line-height: 20px;
     padding: 5px;
 }
 
-#mars-logo
-{
+#mars-logo {
     height: 80px;
     padding: 5px;
-}
-
-#cameras
-{
-    position: absolute;
-    height: 200px;
-    width: 620px;
-    color: #B50303;
-    z-index: 2000;
-    padding: 15px;
-    margin:10px;
-    margin-left: 400px;
-    opacity: 0.9;
-}
-
-#cameras .c_camera, #cameras .s_camera
-{
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    top: 50%;
-    left: 50%;
-    margin-left: -0px;
-    margin-top: -0px;
-    background-size: 100% 100%;
-    /*background-color: #B50303;*/
-    border-radius: 30%;
-}
-
-#cameras .c_camera:hover, #cameras .s_camera:hover
-{
-    opacity: 0.6;
-}
-
-#cameras .c_camera
-{
-    background-image: url('../img/icon.png'); /*doesn't work for some reason*/
-    border: 1.5px solid #00691D;
-}
-
-#cameras .s_camera
-{
-    background-image: url('../img/icon.png'); /*doesn't work for some reason*/
-    border: 1.5px solid #074369;
-}
-
-#cameras img:hover
-{
-    opacity: 0.6;
-}
-
-.c_1
-{
-    top:10px;
-    left: 10px;
-    background-color: #00691D;
-}
-
-.s_1
-{
-    top: 70%;
-    left: 70%;
-    color: #074369;
-}
-
-#rovers
-{
-    position: absolute;
-    height: 200px;
-    color: #B50303;
-    z-index: 2000;
-    padding: 5px;
-    margin-left: 400px;
-}
-
-#rovers .rover
-{
-    padding: 10px;
-    opacity: 0.9;
-    margin: 10px;
-    border-radius: 100%;
-    background-color: rgba(255,255,255,0.15);
-}
-
-#rovers .rover:hover /*stopped working when I added the cameras*/
-{
-    opacity: 0.6;
-}
-
-#rovers #curiosity
-{
-    border: 1.5px solid #00691D;
-}
-
-#rovers #spirit
-{
-    border: 1.5px solid #074369;
 }
 
 #map {
@@ -134,30 +35,26 @@ header {
     background-color: black;
 }
 
-#map .pointer
-{
+#map .pointer {
     background-size: cover;
 }
 
-#map .pointer.curiosity
-{
+#map .pointer.curiosity {
     background: url("../img/pointer-curiosity.svg");
 }
 
-#map .pointer.spirit
-{
+#map .pointer.spirit {
     background: url("../img/pointer-spirit.svg");
 }
 
-#map .circle.curiosity{
+#map .circle.curiosity {
     background: #00691D;
     border: 1px solid #323232;
     border-radius: 50%;
     opacity: .4;
 }
 
-#map .circle.spirit
-{
+#map .circle.spirit {
     background: #074369;
     border: 1px solid #323232;
     border-radius: 50%;
@@ -171,6 +68,127 @@ header {
 #map .message-control {
     display: none;
     color: white;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 10000;
+}
+
+.overlay .flex-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay .sol-chooser {
+    flex: 0 1 200px;
+}
+
+.overlay .rover-schema {
+    flex: 1 1 600px;
+}
+
+.overlay .rover-schema-wrapper {
+    position: relative;
+    width: 600px;
+    margin: auto;
+}
+
+.overlay .rover-schema-img {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+.overlay .rover-schema-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.overlay .rover-schema .camera {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('../img/camera-icon.svg');
+    background-size: cover;
+    opacity: .8;
+    cursor: pointer;
+}
+
+.overlay .rover-schema .camera:hover {
+    opacity: 1;
+}
+
+.overlay .rover-schema .camera.disabled, .overlay .rover-schema .camera.disabled:hover {
+    filter: grayscale(100%);
+    opacity: .5;
+}
+
+.overlay .rover-images {
+    flex: 0 1 200px;
+}
+
+.overlay .rover-schema .camera .tooltip {
+    display: none;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    width: 100px;
+    margin-left: 40px;
+    z-index: 11000;
+}
+
+.overlay .rover-schema .camera:hover .tooltip {
+    display: block;
+}
+
+.overlay .sol-chooser div {
+    background-color: #dfd4d1;
+    color: #000000;
+    text-align: center;
+    padding: 5px 0;
+    margin: 20px;
+    border-radius: 6px;
+    z-index: 11000;
+    cursor: pointer;
+}
+
+.overlay .sol-chooser div.selected {
+    background-color: #eb463f;
+    color: #ffffff;
+}
+
+.overlay .sol-chooser div:hover {
+    background-color: #eb9587;
+}
+
+.overlay .image-sidebar {
+    width: 238px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0 16px 5px 5px;
+    box-sizing: border-box;
+}
+
+.overlay .image-sidebar img.rover {
+    width: 100%;
+    max-width: 90px;
+    padding: 5px;
 }
 
 header, aside, footer {
@@ -204,30 +222,12 @@ footer {
     flex: 1;
 }
 
-aside {
-    flex: 0 1 326px;
-    overflow: scroll;
-    padding: 0 16px 5px 5px;
-    box-sizing: border-box;
-    background-color: #340202;
-}
-
-.sidebar {
-    width: 300px;
-}
-
-.sidebar img.rover {
-    width: 100%;
-    max-width: 90px;
-    padding: 5px;
-}
-
 @media screen and (max-width: 640px){
     .flex-container {
         flex-direction: column;
     }
 
-    .sidebar {
+    .image-sidebar {
         flex: 0 1 200px;
     }
 }
