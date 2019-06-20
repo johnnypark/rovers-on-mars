@@ -69,7 +69,10 @@
         },
 
         onClick: function(e) {
-            this._map.panTo(e.target.options.latlng, this._map.getZoom());
+            if(e.target.options.rover)
+                this._map.fitBounds(data.path[e.target.options.rover].getBounds(), {padding: [10, 10]});
+            else
+                this._map.setView(e.target.options.latlng, this._map.getZoom());
         },
 
         onAdd: function() {},
