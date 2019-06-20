@@ -31,6 +31,69 @@ header {
     padding: 5px;
 }
 
+#cameras
+{
+    position: absolute;
+    height: 200px;
+    width: 620px;
+    color: #B50303;
+    z-index: 2000;
+    padding: 15px;
+    margin:10px;
+    margin-left: 400px;
+    opacity: 0.9;
+}
+
+#cameras .c_camera, #cameras .s_camera
+{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    margin-left: -0px;
+    margin-top: -0px;
+    background-size: 100% 100%;
+    /*background-color: #B50303;*/
+    border-radius: 30%;
+}
+
+#cameras .c_camera:hover, #cameras .s_camera:hover
+{
+    opacity: 0.6;
+}
+
+#cameras .c_camera
+{
+    background-image: url('../img/icon.png'); /*doesn't work for some reason*/
+    border: 1.5px solid #00691D;
+}
+
+#cameras .s_camera
+{
+    background-image: url('../img/icon.png'); /*doesn't work for some reason*/
+    border: 1.5px solid #074369;
+}
+
+#cameras img:hover
+{
+    opacity: 0.6;
+}
+
+.c_1
+{
+    top:10px;
+    left: 10px;
+    background-color: #00691D;
+}
+
+.s_1
+{
+    top: 70%;
+    left: 70%;
+    color: #074369;
+}
+
 #rovers
 {
     position: absolute;
@@ -41,22 +104,28 @@ header {
     margin-left: 400px;
 }
 
-.rover
+#rovers .rover
 {
     padding: 10px;
-    opacity: 0.7;
+    opacity: 0.9;
     margin: 10px;
     border-radius: 100%;
+    background-color: rgba(255,255,255,0.15);
 }
 
-#curiosity
+#rovers .rover:hover /*stopped working when I added the cameras*/
 {
-    border: 3px solid #00691D;
+    opacity: 0.6;
 }
 
-#spirit
+#rovers #curiosity
 {
-    border: 3px solid #074369;
+    border: 1.5px solid #00691D;
+}
+
+#rovers #spirit
+{
+    border: 1.5px solid #074369;
 }
 
 #map {
