@@ -134,13 +134,30 @@ header {
     background-color: black;
 }
 
+#map .pointer
+{
+    background-size: cover;
+}
+
+#map .pointer.curiosity
+{
+    background: url("../img/pointer-curiosity.svg");
+}
+
+#map .pointer.spirit
+{
+    background: url("../img/pointer-spirit.svg");
+}
+
 #map .circle.curiosity{
     background: #00691D;
     border: 1px solid #323232;
     border-radius: 50%;
     opacity: .4;
 }
-#map .circle.spirit{
+
+#map .circle.spirit
+{
     background: #074369;
     border: 1px solid #323232;
     border-radius: 50%;

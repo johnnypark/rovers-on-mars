@@ -137,20 +137,29 @@ function makeIcon(rover)
 let data = {path: {}, points: {}, images: {}};
 function addGeoJSON()
 {
+    let paths = L.featureGroup().addTo(map);
+
     let promises = [];
     for(let rover of ['curiosity', 'spirit'])
     {
-        $.ajax({
+        let load_path = $.ajax({
             type: "GET",
             url: "geodata/" + rover + "-path.geojson",
             dataType: "json",
             success: function (response) {
-                data.path[rover] = L.geoJson(response).addTo(map);
-                if(rover === 'curiosity')
-                    map.fitBounds(data.path[rover].getBounds())
+                let path = L.featureGroup();
+                data.path[rover] = L.geoJson(response).addTo(paths).addTo(path);
+
+                L.edgeMarker({
+                    findEdge : function(map){ return L.bounds([200,30], [map.getSize().x - 50, map.getSize().y - 20])},
+                    icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [80, 80]}),
+                    distanceOpacity: false,
+                    rotateIcons: false,
+                    layerGroup: path
+                }).addTo(map);
             }
         });
-        $.ajax({
+        let load_points = $.ajax({
             type: "GET",
             url: "geodata/" + rover + "-points.geojson",
             dataType: "json",
@@ -170,7 +179,16 @@ function addGeoJSON()
                 }).addTo(map);
             }
         });
+        promises.push(load_path, load_points);
     }
+
+    $.when.apply($, promises).done(function() {
+        map.fitBounds(paths.getBounds(), {padding: [50, 50]});
+    });
+}
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
 }
 
 function doclick(e)
@@ -213,9 +231,9 @@ function doclick(e)
     });
 }
 
+let api_key = "iitToTP7Vq0aSzwdZwfDCcR4tNR5aMgA23KRZn0x";
 function getImage(rover, sol, camera, page)
 {
-    let api_key = "iitToTP7Vq0aSzwdZwfDCcR4tNR5aMgA23KRZn0x";
     let promise = $.Deferred();
     if(!data.images[rover][sol])
     {
