@@ -2,7 +2,7 @@
 turn rover images into clickable thingys
 on click: pan and zoom to rover area
 
-add camera icons at right places, relative to rover pngs
+move camera icons at right places, relative to rover pngs
 make them clickable, on click filter for corresponding photos
 (decide what to do when no sol is selected)
 
