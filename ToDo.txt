@@ -2,7 +2,7 @@
 turn rover images into clickable thingys
 on click: pan and zoom to rover area
 
-move camera icons at right places, relative to rover pngs (move when window small)
+move camera icons to the right places, relative to rover pngs (move when window small)
 make them clickable, on click filter for corresponding photos
 (decide what to do when no sol is selected)
 add tooltip/pop-up for camera icons with further info (name + hyperlink..?)
@@ -10,4 +10,4 @@ add tooltip/pop-up for camera icons with further info (name + hyperlink..?)
 make simplified rover icons for tracks (small, maybe only outline)
 
 add timeline with simple slider icon
-make position change style of corresponding dot on track to small rover icon
+make its position change the style of the corresponding dot on the track to a small rover icon
