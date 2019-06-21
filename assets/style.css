@@ -230,13 +230,22 @@ header {
     cursor: pointer;
 }
 
-.overlay .sol-chooser div.selected {
-    background-color: #eb463f;
+.overlay.curiosity .sol-chooser div.selected {
+    background-color: #00691D;
     color: #ffffff;
 }
 
-.overlay .sol-chooser div:hover {
-    background-color: #eb9587;
+.overlay.curiosity .sol-chooser div:hover {
+    background-color: #74a77f;
+}
+
+.overlay.spirit .sol-chooser div.selected {
+    background-color: #074369;
+    color: #ffffff;
+}
+
+.overlay.spirit .sol-chooser div:hover {
+    background-color: #8cb6de;
 }
 
 .overlay .image-sidebar {
@@ -248,7 +257,22 @@ header {
     padding: 0 16px 5px 5px;
     box-sizing: border-box;
     color: #B50303;
+
+    /*looks a bit terrible right now and the closing-cross doesn't work if it's enabled:
+    -webkit-filter: drop-shadow( 2px 2px 8px rgba(200, 200, 200, .7));
+    filter: drop-shadow( 2px 2px 8px rgba(200, 200, 200, .7));   */
 }
+
+.overlay.curiosity .image-sidebar
+{
+    color: #00691D;
+}
+
+.overlay.spirit .image-sidebar
+{
+    color: #074369;
+}
+
 
 .overlay .image-sidebar .image-area
 {
