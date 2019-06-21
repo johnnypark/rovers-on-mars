@@ -52,14 +52,14 @@ header {
     background: #00691D;
     border: none /*1px solid #323232*/;
     border-radius: 50%;
-    opacity: 0.1;
+    opacity: 0.2;
 }
 
 #map .circle.spirit {
     background: #074369;
     border: none /*1px solid #323232*/;
     border-radius: 50%;
-    opacity: 0.1;
+    opacity: 0.2;
 }
 
 #map .leaflet-top.leaflet-left {
