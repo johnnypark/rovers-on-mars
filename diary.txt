@@ -25,22 +25,25 @@ make them clickable, on click: filter for corresponding photos (J)
 add tooltip/pop-up for camera icons with further info (name + hyperlink..?) (J)
 
 write diary (V)
+
+click on MARS: zoom to overview (J)
+click on Spirit / Curiosity in title: zoom to corresponding site (J)
+
+add bigger Icon when the small ones disapper, maybe as a point close to the track, with name and icon (J)
+more transparency in rover/images view (J)
+
+more space (~1/3 of screen) for images, maybe make the small images bigger (would have to check whether that complicates view on small device..) (J)
 _____________________
 todo:
 
 (N) make simplified rover icons for tracks (small, maybe only outline)
 
-click on MARS: zoom to overview
-click on Spirit / Curiosity in title: zoom to corresponding site
-
-add bigger Icon when the small ones disapper, maybe as a point close to the track, with name and icon
-more transparency in rover/images view
-
-more space (~1/3 of screen) for images, maybe make the small images bigger (would have to check whether that complicates view on small device..)
-
 in rover-image-view: maybe clicking on the background could get you back to the map
+(hard to do)
 
 make responsive, functional on small device
+- push gallery below rover svg
+- sol-choosing buttons between rover svg and gallery
 
 harmonize the styling (V)
 
