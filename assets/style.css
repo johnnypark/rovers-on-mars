@@ -176,6 +176,10 @@ header {
 
 .overlay .rover-schema .camera:hover {
     opacity: 1;
+    width: 40px;
+    height: 40px;
+    margin-left: -5px;
+    margin-top: -5px;
 }
 
 .overlay .rover-schema .camera.disabled, .overlay .rover-schema .camera.disabled:hover {
@@ -196,7 +200,7 @@ header {
     border-radius: 6px;
     position: absolute;
     width: 100px;
-    margin-left: 40px;
+    margin-left: 50px;
     z-index: 11000;
 }
 
