@@ -66,6 +66,24 @@ header {
     top: 130px;
 }
 
+.leaflet-control
+{
+    color: #dfd4d1;
+    background-color: #B50303;
+}
+
+.leaflet-control-scale /*to not have red at the scale*/
+{
+    color: black;
+    background-color: rgba(255,255,255,.1);
+}
+
+.leaflet-control-zoom-in /*DOESN'T WORK*/
+{
+    color: #dfd4d1;
+    background-color: #B50303;
+}
+
 #map .message-control {
     display: none;
     color: white;
