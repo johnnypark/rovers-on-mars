@@ -93,9 +93,9 @@ function initMap() {
         "Gale Crater (Curiosity)": gale,
         "Gusev Crater (Spirit)": gusev
     };
-    let mapPicker = L.control.layers(baseLayers, overlays).addTo(map);
+    let mapPicker = L.control.layers(baseLayers, overlays, {position: 'topleft'}).addTo(map);
 
-    let miniMap = new L.Control.MiniMap(minimap, {position: "topleft", zoomAnimation: true, toggleDisplay: true, autoToggleDisplay: true}).addTo(map);
+    let miniMap = new L.Control.MiniMap(minimap, {position: "topright", zoomAnimation: true, toggleDisplay: true, autoToggleDisplay: true, width: 120, height: 120}).addTo(map);
 
     map.activeBaseLayer = vector;
     map.on("baselayerchange", function(e) {
@@ -135,9 +135,10 @@ function makeIcon(rover)
 }
 
 let data = {path: {}, points: {}, images: {}, manifest: {}};
+let paths;
 function addGeoJSON()
 {
-    let paths = L.featureGroup().addTo(map);
+    paths = L.featureGroup().addTo(map);
 
     let promises = [];
     for(let rover of ['curiosity', 'spirit'])
@@ -147,16 +148,30 @@ function addGeoJSON()
             url: "geodata/" + rover + "-path.geojson",
             dataType: "json",
             success: function (response) {
-                let path = L.featureGroup();
-                data.path[rover] = L.geoJson(response).addTo(paths).addTo(path);
+                data.path[rover] = L.geoJson(response).addTo(paths);
+
+                let bigMarkerGroup = L.featureGroup().addTo(map);
+                let center = data.path[rover].getBounds().getCenter();
+                let pos;
+                if(rover === 'curiosity')
+                    pos = [center.lat, center.lng + 0.01];
+                else
+                    pos = [center.lat + 0.01, center.lng + 0.01];
+                let bigMarker = L.marker(pos, {
+                    icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [40, 40]})
+                }).addTo(bigMarkerGroup);
+
+                bigMarker.on("click", function() {
+                    flyTo(rover);
+                });
 
                 L.edgeMarker({
                     rover: rover,
-                    findEdge : function(map){ return L.bounds([200,120], [map.getSize().x - 50, map.getSize().y - 20])},
+                    findEdge : function(map){ return L.bounds([20, 120], [map.getSize().x - 50, map.getSize().y - 20])},
                     icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [80, 80]}),
                     distanceOpacity: false,
                     rotateIcons: false,
-                    layerGroup: path
+                    layerGroup: bigMarkerGroup
                 }).addTo(map);
             }
         });
@@ -197,6 +212,14 @@ function addGeoJSON()
     $.when.apply($, promises).done(function() {
         map.fitBounds(paths.getBounds(), {padding: [50, 50]});
     });
+}
+
+function flyTo(rover)
+{
+    if(rover)
+        map.flyToBounds(data.path[rover].getBounds(), {padding: [10, 10]});
+    else
+        map.flyToBounds(paths.getBounds(), {padding: [50, 50]});
 }
 
 function clickMarker(e)
@@ -263,11 +286,13 @@ function clickCamera(rover, camera)
         html += '<h2>Sol ' + sol + '</h2>';
         html += '<h5>' + camera + '</h5>';
         html += '<h5>' + data.images[rover][camera][sol]['photos'].length + ' images</h5>';
+        html += '<div class="image-area">'
         let j;
         for(j = 0; j < data.images[rover][camera][sol]['photos'].length; j++)
         {
             html += '<a href="' + data.images[rover][camera][sol]['photos'][j].img_src + '"><img src="' + data.images[rover][camera][sol]['photos'][j].img_src + '" class="rover"/></a>';
         }
+        html += '</div>';
         container.html(html);
         lightbox = container.find('a').simpleLightbox({});
     });

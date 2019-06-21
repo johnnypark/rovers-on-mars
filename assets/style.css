@@ -37,6 +37,7 @@ header {
 
 #map .pointer {
     background-size: cover;
+    z-index: 5000 !important;
 }
 
 #map .pointer.curiosity {
@@ -51,14 +52,14 @@ header {
     background: #00691D;
     border: 1px solid #323232;
     border-radius: 50%;
-    opacity: .4;
+    opacity: .5;
 }
 
 #map .circle.spirit {
     background: #074369;
     border: 1px solid #323232;
     border-radius: 50%;
-    opacity: .4;
+    opacity: .5;
 }
 
 #map .leaflet-top.leaflet-left {
@@ -79,7 +80,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0,0,0,0.7);
     z-index: 10000;
 }
 
@@ -142,6 +143,15 @@ header {
     cursor: pointer;
 }
 
+.overlay.curiosity .rover-schema .camera {
+    background-image: url('../img/camera-icon-green.svg');
+}
+
+
+.overlay.spirit .rover-schema .camera {
+    background-image: url('../img/camera-icon-blue.svg');
+}
+
 .overlay .rover-schema .camera:hover {
     opacity: 1;
 }
@@ -193,7 +203,8 @@ header {
 }
 
 .overlay .image-sidebar {
-    width: 238px;
+    width: 33%;
+    min-width: 238px;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -202,9 +213,17 @@ header {
     color: #B50303;
 }
 
-.overlay .image-sidebar img.rover {
+.overlay .image-sidebar .image-area
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overlay .image-sidebar .image-area img.rover {
     width: 100%;
-    max-width: 90px;
+    max-width: 100px;
     padding: 5px;
 }
 

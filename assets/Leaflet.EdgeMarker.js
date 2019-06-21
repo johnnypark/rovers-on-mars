@@ -93,20 +93,20 @@
             }
 
             var mapPixelBounds = this.options.findEdge(this._map);
+            var screenPixelBounds = L.bounds([0,0], map.getSize());
 
             var markerWidth = this.options.icon.options.iconSize[0];
             var markerHeight = this.options.icon.options.iconSize[1];
 
             for (var i = 0; i < features.length; i++) {
                 var currentMarkerPosition = this._map.latLngToContainerPoint(
-                    //features[i].getLatLng()
-                    features[i].getBounds().getCenter()
+                    features[i].getLatLng()
                 );
 
-                if (currentMarkerPosition.y < mapPixelBounds.min.y ||
-                    currentMarkerPosition.y > mapPixelBounds.max.y ||
-                    currentMarkerPosition.x > mapPixelBounds.max.x ||
-                    currentMarkerPosition.x < mapPixelBounds.min.x
+                if (currentMarkerPosition.y < screenPixelBounds.min.y ||
+                    currentMarkerPosition.y > screenPixelBounds.max.y ||
+                    currentMarkerPosition.x > screenPixelBounds.max.x ||
+                    currentMarkerPosition.x < screenPixelBounds.min.x
                 ) {
                     // get pos of marker
                     var x = currentMarkerPosition.x;
@@ -183,7 +183,7 @@
                         newOptions.angle = angle;
                     }
 
-                    var ref = { latlng: features[i].getBounds().getCenter() };//features[i].getLatLng() };
+                    var ref = { latlng: features[i].getLatLng() };
                     newOptions = L.extend({}, newOptions, ref);
 
                     var marker = L.rotatedMarker(
