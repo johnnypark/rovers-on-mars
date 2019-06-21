@@ -49,7 +49,7 @@ let gale = L.imageOverlay( "img/gale-crater.jpg",[[-6.99038,136.10456], [-3.7870
 L.Control.Message = L.Control.extend({
     onAdd: function(map) {
         let div = L.DomUtil.create('div', 'message-control');
-        div.innerHTML = 'No imagery available for this layer and zoom.<br>Please use a different layer or activate the imagery.';
+        div.innerHTML = 'No imagery available for this layer and zoom.<br>Please use a different layer or activate the crater imagery.';
         return div;
     },
 
