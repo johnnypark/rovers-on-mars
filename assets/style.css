@@ -71,6 +71,10 @@ header {
     color: white;
 }
 
+#map path {
+    stroke: rgb(179, 30, 38);
+}
+
 .overlay {
     display: none;
     position: fixed;
