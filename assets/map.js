@@ -261,6 +261,7 @@ function clickCamera(rover, camera)
     promise.done(function(){
         let html = '';
         html += '<h2>Sol ' + sol + '</h2>';
+        html += '<h5>' + camera + '</h5>';
         html += '<h5>' + data.images[rover][camera][sol]['photos'].length + ' images</h5>';
         let j;
         for(j = 0; j < data.images[rover][camera][sol]['photos'].length; j++)
@@ -292,6 +293,10 @@ function getImage(rover, sol, camera, page)
         promise.resolve();
     }
     return promise.promise();
+}
+
+function closeOverlay() {
+    $(".overlay").hide();
 }
 
 /*

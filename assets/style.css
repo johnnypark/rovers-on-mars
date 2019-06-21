@@ -83,6 +83,22 @@ header {
     z-index: 10000;
 }
 
+.overlay .close {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 44px;
+    font-size: 3rem;
+    color: #ffffff;
+    height: 44px;
+    line-height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: -14px;
+    margin-right: -14px;
+}
+
 .overlay .flex-wrapper {
     height: 100%;
     display: flex;
@@ -183,6 +199,7 @@ header {
     overflow-y: scroll;
     padding: 0 16px 5px 5px;
     box-sizing: border-box;
+    color: #B50303;
 }
 
 .overlay .image-sidebar img.rover {
@@ -220,6 +237,35 @@ footer {
 
 .content {
     flex: 1;
+}
+
+/* fixes for simplelightbox */
+.sl-wrapper {
+    z-index: 12040;
+}
+
+.sl-overlay {
+    z-index: 12000;
+}
+
+.sl-spinner {
+    z-index: 12007;
+}
+
+.sl-wrapper .sl-close
+{
+    z-index: 12060;
+    background: none;
+    border: none;
+}
+
+.sl-wrapper .sl-image
+{
+    z-index: 15000;
+}
+
+.sl-wrapper .sl-navigation button {
+    z-index: 15060;
 }
 
 @media screen and (max-width: 640px){
