@@ -59,7 +59,7 @@ header {
     background: #074369;
     border: none /*1px solid #323232*/;
     border-radius: 50%;
-    opacity: 0.3;
+    opacity: 0.1;
 }
 
 #map .leaflet-top.leaflet-left {
