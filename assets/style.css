@@ -78,7 +78,7 @@ header {
     background-color: rgba(255,255,255,.1);
 }
 
-.leaflet-control-zoom-in /*DOESN'T WORK*/
+.leaflet-bar a, .leaflet-bar a:hover
 {
     color: #dfd4d1;
     background-color: #B50303;
@@ -161,7 +161,7 @@ header {
     height: 30px;
     background-image: url('../img/camera-icon.svg');
     background-size: cover;
-    opacity: .8;
+    opacity: .9;
     cursor: pointer;
 }
 
