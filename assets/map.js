@@ -283,8 +283,8 @@ function clickCamera(rover, camera)
 
     promise.done(function(){
         let html = '';
-        html += '<h2>Sol ' + sol + '</h2>';
-        html += '<h5>' + camera + '</h5>';
+        //html += '<h2>Sol ' + sol + '</h2>';
+        html += '<h2> images taken by ' + rover + '&#39s ' + camera + '</h2>';
         html += '<h5>' + data.images[rover][camera][sol]['photos'].length + ' images</h5>';
         html += '<div class="image-area">'
         let j;

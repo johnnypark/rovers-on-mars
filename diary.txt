@@ -46,6 +46,7 @@ make responsive, functional on small device
 - sol-choosing buttons between rover svg and gallery
 
 harmonize the styling (V)
+color (text and buttons) in overlays corresponding to rover color (green/blue)
 
 _____________________
 additionally if time:
