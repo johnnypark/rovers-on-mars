@@ -33,6 +33,9 @@ add bigger Icon when the small ones disapper, maybe as a point close to the trac
 more transparency in rover/images view (J)
 
 more space (~1/3 of screen) for images, maybe make the small images bigger (would have to check whether that complicates view on small device..) (J)
+
+color (text and buttons) in overlays corresponding to rover color (green/blue) (V)
+
 _____________________
 todo:
 
@@ -40,14 +43,15 @@ todo:
 
 in rover-image-view: maybe clicking on the background could get you back to the map
 (hard to do)
+other possibility: keep title active in overlay to navigate back
 
 make responsive, functional on small device
 - push gallery below rover svg
 - sol-choosing buttons between rover svg and gallery
 
 harmonize the styling (V)
-color (text and buttons) in overlays corresponding to rover color (green/blue)
 
+IDEA: on click on pointer at full zoom (second click): go to rover-image view with all Sols to choose from
 _____________________
 additionally if time:
 
