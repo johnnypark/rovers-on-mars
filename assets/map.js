@@ -292,11 +292,12 @@ function clickCamera(rover, camera)
         //html += '<h2>Sol ' + sol + '</h2>';
         html += '<h2> images taken by ' + rover + '&#39s ' + camera + '</h2>';
         html += '<h5>' + data.images[rover][camera][sol]['photos'].length + ' images</h5>';
-        html += '<div class="image-area">'
+        html += '<div class="image-area">';
         let j;
         for(j = 0; j < data.images[rover][camera][sol]['photos'].length; j++)
         {
-            html += '<a href="' + data.images[rover][camera][sol]['photos'][j].img_src + '"><img src="' + data.images[rover][camera][sol]['photos'][j].img_src + '" class="rover"/></a>';
+            let img_src = data.images[rover][camera][sol]['photos'][j].img_src.replace(/http/, 'https');
+            html += '<a href="' + img_src + '"><img src="' + img_src + '" class="rover"/></a>';
         }
         html += '</div>';
         container.html(html);
