@@ -154,11 +154,11 @@ function addGeoJSON()
                 let center = data.path[rover].getBounds().getCenter();
                 let pos;
                 if(rover === 'curiosity')
-                    pos = [center.lat, center.lng + 0.01];
+                    pos = [center.lat, center.lng + 0.02];
                 else
                     pos = [center.lat + 0.01, center.lng + 0.01];
                 let bigMarker = L.marker(pos, {
-                    icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [40, 40]})
+                    icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [80, 80]})
                 }).addTo(bigMarkerGroup);
 
                 bigMarker.on("click", function() {
