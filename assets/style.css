@@ -68,7 +68,7 @@ header {
 
 .leaflet-control
 {
-    color: #dfd4d1;
+    color: #dfdfdf;
     background-color: #B50303;
     border: none;
 }
@@ -131,6 +131,7 @@ header {
     cursor: pointer;
     margin-top: -14px;
     margin-right: -14px;
+    z-index: 10900;
 }
 
 .overlay .flex-wrapper {
@@ -142,6 +143,13 @@ header {
 
 .overlay .sol-chooser {
     flex: 0 1 200px;
+    direction: rtl;
+    overflow: auto;
+    height: 100%;
+}
+
+.overlay .sol-chooser div {
+    direction: ltr;
 }
 
 .overlay .rover-schema {
@@ -253,7 +261,7 @@ header {
     min-width: 238px;
     height: 100%;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 0 16px 5px 5px;
     box-sizing: border-box;
     color: #B50303;

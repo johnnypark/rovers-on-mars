@@ -93,9 +93,9 @@ function initMap() {
         "Gale Crater (Curiosity)": gale,
         "Gusev Crater (Spirit)": gusev
     };
-    let mapPicker = L.control.layers(baseLayers, overlays, {position: 'topleft'}).addTo(map);
 
-    let miniMap = new L.Control.MiniMap(minimap, {position: "topright", zoomAnimation: true, toggleDisplay: true, autoToggleDisplay: true, width: 120, height: 120}).addTo(map);
+    let miniMap = new L.Control.MiniMap(minimap, {position: 'topright', zoomAnimation: true, toggleDisplay: true, autoToggleDisplay: true, width: 120, height: 120}).addTo(map);
+    let mapPicker = L.control.layers(baseLayers, overlays, {position: 'topright'}).addTo(map);
 
     map.activeBaseLayer = vector;
     map.on("baselayerchange", function(e) {
@@ -168,7 +168,7 @@ function addGeoJSON()
                 L.edgeMarker({
                     rover: rover,
                     findEdge : function(map){ return L.bounds([20, 120], [map.getSize().x - 50, map.getSize().y - 20])},
-                    icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [80, 80]}),
+                    icon: L.divIcon({ className: 'pointer ' + rover , iconSize: [60, 60]}),
                     distanceOpacity: false,
                     rotateIcons: false,
                     layerGroup: bigMarkerGroup
@@ -216,10 +216,16 @@ function addGeoJSON()
 
 function flyTo(rover)
 {
+    $("#map path").hide();
     if(rover)
         map.flyToBounds(data.path[rover].getBounds(), {padding: [10, 10]});
     else
         map.flyToBounds(paths.getBounds(), {padding: [50, 50]});
+    map.once('moveend', function() {
+        $("#map path").show();
+        paths.clearLayers();
+        for (let p in data.path) data.path[p].addTo(paths);
+    });
 }
 
 function clickMarker(e)
@@ -294,7 +300,9 @@ function clickCamera(rover, camera)
         }
         html += '</div>';
         container.html(html);
-        lightbox = container.find('a').simpleLightbox({});
+
+        if(data.images[rover][camera][sol]['photos'].length > 0)
+            lightbox = container.find('a').simpleLightbox({});
     });
 }
 
