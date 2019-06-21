@@ -1,13 +1,41 @@
+_____________________
+done:
+
+find tiling service, images, API, track info...
+
+concept & layout
+
+create icons, find info about cameras
 
 turn rover images into clickable thingys
 on click: pan and zoom to rover area
 
 move camera icons to the right places, relative to rover pngs (move when window small)
 make them clickable, on click filter for corresponding photos
-(decide what to do when no sol is selected)
 add tooltip/pop-up for camera icons with further info (name + hyperlink..?)
 
+
+
+_____________________
+todo:
+
 make simplified rover icons for tracks (small, maybe only outline)
+
+click on MARS: zoom to overview
+click on Spirit / Curiosity in title: zoom to corresponding site
+
+add bigger Icon when the small ones disapper, maybe as a point close to the track, with name and icon
+more transparency in rover/images view
+
+more space (~1/3 of screen) for images, maybe make the small images bigger (would have to check whether that complicates view on small device..)
+
+in rover-image-view: maybe clicking on the background could get you back to the map
+
+
+make responsive, functional on small device
+
+_____________________
+additionally if time:
 
 add timeline with simple slider icon
 make its position change the style of the corresponding dot on the track to a small rover icon
