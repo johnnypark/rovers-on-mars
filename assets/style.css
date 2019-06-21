@@ -50,14 +50,14 @@ header {
 
 #map .circle.curiosity {
     background: #00691D;
-    border: none /*1px solid #323232*/;
+    border: none 1px solid #323232;
     border-radius: 50%;
     opacity: 0;
 }
 
 #map .circle.spirit {
     background: #074369;
-    border: none /*1px solid #323232*/;
+    border: 1px solid #323232;
     border-radius: 50%;
     opacity: 0;
 }
