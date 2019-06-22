@@ -140,7 +140,7 @@ header {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .overlay .rover-schema {
@@ -227,7 +227,7 @@ header {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .overlay .sol-chooser div {
@@ -258,6 +258,10 @@ header {
 
 .overlay.spirit .sol-chooser div:hover {
     background-color: #8cb6de;
+}
+
+.overlay .sol-chooser div span {
+    font-size: small;
 }
 
 .overlay .image-sidebar {
