@@ -43,11 +43,11 @@ header {
 }
 
 #map .pointer.curiosity {
-    background: url("../img/pointer-curiosity.svg");
+    background-image: url("../img/pointer-curiosity.svg");
 }
 
 #map .pointer.spirit {
-    background: url("../img/pointer-spirit.svg");
+    background-image: url("../img/pointer-spirit.svg");
 }
 
 #map .circle.curiosity {
