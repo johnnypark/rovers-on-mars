@@ -240,7 +240,7 @@ function clickMarker(e)
     for(let i = p.date_1; i <= p.date_2; i++)
     {
         let earth_date;
-        if(data.manifest[p.rover].photo_manifest.photos[i].earth_date)
+        if(data.manifest[p.rover].photo_manifest.photos[i] && data.manifest[p.rover].photo_manifest.photos[i].earth_date)
             earth_date = data.manifest[p.rover].photo_manifest.photos[i].earth_date;
         container.append("<div class='s" + i + " " + (i === p.date_1 ? "selected" : "") + "' onclick=\"clickSol('" + p.rover + "', " + i + ")\">Sol " + i + (earth_date ? "<br/><span>" + earth_date + "</span>" : "")+"</div>");
     }
