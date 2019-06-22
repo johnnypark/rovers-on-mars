@@ -142,17 +142,6 @@ header {
     justify-content: center;
 }
 
-.overlay .sol-chooser {
-    flex: 0 1 200px;
-    direction: rtl;
-    overflow: auto;
-    height: 100%;
-}
-
-.overlay .sol-chooser div {
-    direction: ltr;
-}
-
 .overlay .rover-schema {
     flex: 1 1 600px;
 }
@@ -228,6 +217,18 @@ header {
     display: block;
 }
 
+.overlay .sol-chooser {
+    flex: 0 1 200px;
+    direction: rtl;
+    overflow: auto;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
 .overlay .sol-chooser div {
     background-color: #dfd4d1;
     color: #000000;
@@ -237,6 +238,7 @@ header {
     border-radius: 6px;
     z-index: 11000;
     cursor: pointer;
+    direction: ltr;
 }
 
 .overlay.curiosity .sol-chooser div.selected {
@@ -357,12 +359,40 @@ footer {
     z-index: 15060;
 }
 
-@media screen and (max-width: 640px){
-    .flex-container {
+@media screen and (max-width: 992px) {
+    .overlay .flex-wrapper {
         flex-direction: column;
     }
 
-    .image-sidebar {
+    .overlay .rover-schema-wrapper {
+        height: 100%;
+        max-width: 100%;
+    }
+
+    .overlay .rover-schema {
+        order: 1;
+        max-height: 40%;
+    }
+
+    .overlay .sol-chooser {
+        order: 2;
+        direction: ltr;
+
         flex: 0 1 200px;
+        flex-direction: row;
+        justify-content: center;
+        overflow: auto;
+        flex-wrap: wrap;
+    }
+
+    .overlay .sol-chooser div {
+        margin: 5px;
+        height: 22px;
+        min-width: 100px;
+    }
+
+    .overlay .image-sidebar {
+        order: 3;
+        width: 100%;
     }
 }
