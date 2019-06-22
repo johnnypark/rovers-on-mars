@@ -226,7 +226,7 @@ header {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .overlay .sol-chooser div {
@@ -234,7 +234,7 @@ header {
     color: #000000;
     text-align: center;
     padding: 5px 0;
-    margin: 20px;
+    margin: 8px 20px;
     border-radius: 6px;
     z-index: 11000;
     cursor: pointer;
