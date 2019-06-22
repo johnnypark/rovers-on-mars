@@ -13,6 +13,7 @@ header {
     color: #B50303;
     z-index: 1000;
     padding: 5px;
+    max-width: 60%;
 
     -webkit-filter: drop-shadow( 3px 3px 3px rgba(200, 200, 200, .7));
     filter: drop-shadow( 3px 3px 3px rgba(200, 200, 200, .7));
@@ -360,18 +361,8 @@ footer {
 }
 
 @media screen and (max-width: 992px) {
-    .overlay .flex-wrapper {
-        flex-direction: column;
-    }
-
-    .overlay .rover-schema-wrapper {
-        height: 100%;
-        max-width: 100%;
-    }
-
     .overlay .rover-schema {
         order: 1;
-        max-height: 40%;
     }
 
     .overlay .sol-chooser {
@@ -394,5 +385,68 @@ footer {
     .overlay .image-sidebar {
         order: 3;
         width: 100%;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .overlay .rover-schema-wrapper {
+        max-width: 80%;
+    }
+
+    .overlay .flex-wrapper {
+        flex-direction: column;
+    }
+
+    .overlay .rover-schema {
+        order: 1;
+        max-height: 40%;
+    }
+
+    .overlay .sol-chooser {
+        order: 2;
+    }
+
+    .overlay .image-sidebar {
+        order: 3;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .overlay .rover-schema {
+        order: 2;
+        max-width: 40%;
+    }
+
+    .overlay .rover-schema-wrapper {
+        max-width: 100%;
+    }
+
+    .overlay .sol-chooser {
+        order: 1;
+    }
+
+    .overlay .image-sidebar {
+        order: 3;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .title {
+        font-size: medium;
+    }
+
+    #mars-logo {
+        width: 120px;
+        height: auto;
+    }
+
+    #header {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 650px) and (orientation: portrait) {
+    .overlay .rover-schema-wrapper {
+        max-width: 50%;
     }
 }
