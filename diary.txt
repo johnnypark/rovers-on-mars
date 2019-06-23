@@ -1,75 +1,82 @@
-Rovers on Mars diary. 
+DIARY for Rovers on Mars
 
 J - Jonas Beinder, V - Verena Klasen, N - Nikita Slavin 
 
 GM - Group meeting 
 _____________________
-done:
-
-find tiling service (N,J), images(N), API(N?), track info(N)...
-
+___________
+early May:
+find available data (N)
+develop the basic idea (NVJ)
+___________
+May 8th:
+propose project idea (V)
+___________
+the following 2weeks:
+find tiling service (N,J)
+find crater imagery (N)
+check APIs (NJ)
+prepare track info for website (N)
+___________
+end of May:
 GM - define the concept (JNV)
+create website environment and base for website on github (J)
+create first layouts including the UI concept (V)
+create MARS title SVG inspired by the NASA (Nasalization) font (V)
+create rover icons, find information about cameras (N)
+___________
+early June:
+add all relevant map elements to the website (J)
+create initial styling and concept for colour coding (V)
+_________________
+first submission
+_________________
 
-create file (what kind?) of tracks to be implemented in website (N)
-
-create first layouts including title SVG (V)
-
-create rover icons, find info about cameras (N)
-
-create website environment (J)
-
-bring the photos to the website (J)
-
-initial styling and colour coding (V, J)
-
-turn rover images into clickable thingys, on click: pan and zoom to rover area (J)
+__________________________________
+mid-june until the final deadline:
+__________________________________
+turn rover images into clickable buttons, on click: pan and zoom to rover area (J)
 make them move relative to the position of the track (J)
+
+GM adaption of concept
+no incorporation of a time slider but rather having the track act as that with sol-information on tooltip
+get rid of image sidebar, replace by an overlay
+the overlay shows the rover schema including the camea positions side-by-side with the image gallery
+a second overlay opens when clicking on the pictures
 
 move camera icons to the right places, relative to rover pngs (V)
 make them clickable, on click: filter for corresponding photos (J)
-add tooltip/pop-up for camera icons with further info (name + hyperlink..?) (J)
+add tooltip/pop-up for camera icons with further info (name) (J)
+add sol-choosers since some points on the track include more than one sol (J)
 
-GM - write diary (V)
-
-click on MARS: zoom to overview (J)
-click on Spirit / Curiosity in title: zoom to corresponding site (J)
-
-add bigger Icon when the small ones disapper, maybe as a point close to the track, with name and icon (J)
-more transparency in rover/images view (J)
-
-more space (~1/3 of screen) for images, maybe make the small images bigger (would have to check whether that complicates view on small device..) (J)
-
-color (text and buttons) in overlays corresponding to rover color (green/blue) (V)
-
-(N) make simplified rover icons for tracks (small, maybe only outline)
+further development of UI: navigation functions (V)
+implementation of navigation functions (J)
+click on MARS: zoom to overview
+click on Spirit / Curiosity in title: zoom to corresponding site
+more space (~1/3 of screen) for images
 
 harmonize the styling (V)
+make simplified rover icons for tracks (small, maybe only outline) (N)
 
 add Earth data to the sol icon (JVN)
 
-make responsive, functional on small device
+GM how to make responsive, functional on small device
 - push gallery below rover svg
-- sol-choosing buttons between rover svg and gallery (J)
-_____________________
-todo:
+- sol-choosing buttons between rover svg and gallery
+implementation of responsiveness (J)
 
+clean the diary (V)
 
-
-GM - in rover-image-view: maybe clicking on the background could get you back to the map
-(hard to do)
-other possibility: keep title active in overlay to navigate back - rejected 
-
-
-
-_____________________
-
-additionally if time:
+submit project (J)
+_____________________________
+possible further development:
 
 add timeline with simple slider icon
 make its position change the style of the corresponding dot on the track to a small rover icon
-IDEA: on click on pointer at full zoom (second click): go to rover-image view with all Sols to choose from
+on click on pointer at full zoom (second click): go to rover-image view with all Sols to choose from
+clicking on background in overlays to navigate back to initial site
+_____________________________
 
-_____________________
 
 Time expenses: 
 
