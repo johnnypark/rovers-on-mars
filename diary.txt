@@ -1,9 +1,14 @@
+Rovers on Mars diary. 
+
+J - Jonas Beinder, V - Verena Klasen, N - Nikita Slavin 
+
+GM - Group meeting 
 _____________________
 done:
 
 find tiling service (N,J), images(N), API(N?), track info(N)...
 
-define the concept (JNV)
+GM - define the concept (JNV)
 
 create file (what kind?) of tracks to be implemented in website (N)
 
@@ -24,7 +29,7 @@ move camera icons to the right places, relative to rover pngs (V)
 make them clickable, on click: filter for corresponding photos (J)
 add tooltip/pop-up for camera icons with further info (name + hyperlink..?) (J)
 
-write diary (V)
+GM - write diary (V)
 
 click on MARS: zoom to overview (J)
 click on Spirit / Curiosity in title: zoom to corresponding site (J)
@@ -36,24 +41,39 @@ more space (~1/3 of screen) for images, maybe make the small images bigger (woul
 
 color (text and buttons) in overlays corresponding to rover color (green/blue) (V)
 
-_____________________
-todo:
-
 (N) make simplified rover icons for tracks (small, maybe only outline)
-
-in rover-image-view: maybe clicking on the background could get you back to the map
-(hard to do)
-other possibility: keep title active in overlay to navigate back
-
-make responsive, functional on small device
-- push gallery below rover svg
-- sol-choosing buttons between rover svg and gallery
 
 harmonize the styling (V)
 
-IDEA: on click on pointer at full zoom (second click): go to rover-image view with all Sols to choose from
+add Earth data to the sol icon (JVN)
+
+make responsive, functional on small device
+- push gallery below rover svg
+- sol-choosing buttons between rover svg and gallery (J)
 _____________________
+todo:
+
+
+
+GM - in rover-image-view: maybe clicking on the background could get you back to the map
+(hard to do)
+other possibility: keep title active in overlay to navigate back - rejected 
+
+
+
+_____________________
+
 additionally if time:
 
 add timeline with simple slider icon
 make its position change the style of the corresponding dot on the track to a small rover icon
+IDEA: on click on pointer at full zoom (second click): go to rover-image view with all Sols to choose from
+
+_____________________
+
+Time expenses: 
+
+GM - 10h
+J - 40h
+V - 25h
+N - 25h
